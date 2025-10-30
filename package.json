@@ -38,21 +38,23 @@
     }
   ],
   "dependencies": {
-    "@raycast/api": "^1.79.0"
+    "@raycast/api": "^1.93.2"
   },
   "devDependencies": {
-    "@raycast/eslint-config": "^1.0.6",
-    "@types/node": "20.8.10",
-    "@types/react": "18.2.27",
-    "eslint": "^8.51.0",
-    "prettier": "^3.0.3",
-    "typescript": "^5.2.2"
+    "@raycast/eslint-config": "^2.1.1",
+    "@types/node": "^22.10.2",
+    "@types/react": "^18.3.12",
+    "eslint": "^9.13.0",
+    "prettier": "^3.4.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.4"
   },
   "scripts": {
     "build": "ray build -e dist",
     "dev": "ray develop",
-    "fix-lint": "ray lint --fix",
-    "lint": "ray lint",
-    "publish": "ray publish"
+    "fix-lint": "eslint \"src/**/*.{ts,tsx}\" --fix",
+    "lint": "eslint \"src/**/*.{ts,tsx}\"",
+    "publish": "ray publish",
+    "test": "vitest run"
   }
 }
