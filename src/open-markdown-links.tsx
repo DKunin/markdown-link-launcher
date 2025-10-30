@@ -1,14 +1,8 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
-import { Action, ActionPanel, List, getPreferenceValues, showToast, Toast, Icon } from "@raycast/api";
+import { Action, ActionPanel, Icon, List, Toast, getPreferenceValues, showToast } from "@raycast/api";
+import { existsSync, readFileSync } from "fs";
 import { useEffect, useState } from "react";
-import { readFileSync, existsSync } from "fs";
 
-interface MarkdownLink {
-  text: string;
-  url: string;
-  lineNumber: number;
-}
+import { MarkdownLink, extractMarkdownLinks } from "./utils/markdown";
 
 interface Preferences {
   markdownFilePath: string;
@@ -58,38 +52,8 @@ export default function Command() {
     }
   }
 
-  function extractMarkdownLinks(content: string): MarkdownLink[] {
-    const links: MarkdownLink[] = [];
-    const lines = content.split("\n");
-
-    // Regular expression to match markdown links: [text](url)
-    const markdownLinkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
-
-    lines.forEach((line, index) => {
-      let match;
-      while ((match = markdownLinkRegex.exec(line)) !== null) {
-        const [, text, url] = match;
-        // Basic URL validation
-        if (
-          url &&
-          (url.startsWith("http://") || url.startsWith("https://") || url.startsWith("mailto:") || url.startsWith("/"))
-        ) {
-          links.push({
-            text: text || "Untitled",
-            url: url,
-            lineNumber: index + 1,
-          });
-        }
-      }
-    });
-
-    return links;
-  }
-
   if (error) {
     return (
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-expect-error
       <List isLoading={isLoading}>
         <List.EmptyView
           title="Error Loading File"
