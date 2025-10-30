@@ -1,0 +1,58 @@
+{
+  "$schema": "https://raycast.com/schemas/extension.json",
+  "name": "markdown-link-launcher",
+  "title": "Markdown Link Launcher",
+  "description": "Read markdown files and open links from them",
+  "icon": "extension-icon.png",
+  "author": "dkuninn",
+  "categories": [
+    "Productivity",
+    "Documentation"
+  ],
+  "license": "MIT",
+  "commands": [
+    {
+      "name": "open-markdown-links",
+      "title": "Приборы",
+      "description": "Read a markdown file and open links from it",
+      "mode": "view"
+    }
+  ],
+  "preferences": [
+    {
+      "name": "markdownFilePath",
+      "title": "Markdown File Path",
+      "description": "Full path to your markdown file or directory",
+      "type": "textfield",
+      "required": true,
+      "placeholder": "~/Documents/notes.md or ~/Documents/notes"
+    },
+    {
+      "name": "searchRecursive",
+      "title": "Search Recursively",
+      "description": "Search through subdirectories when a folder path is provided",
+      "type": "checkbox",
+      "required": false,
+      "label": "Enable recursive search",
+      "default": false
+    }
+  ],
+  "dependencies": {
+    "@raycast/api": "^1.79.0"
+  },
+  "devDependencies": {
+    "@raycast/eslint-config": "^1.0.6",
+    "@types/node": "20.8.10",
+    "@types/react": "18.2.27",
+    "eslint": "^8.51.0",
+    "prettier": "^3.0.3",
+    "typescript": "^5.2.2"
+  },
+  "scripts": {
+    "build": "ray build -e dist",
+    "dev": "ray develop",
+    "fix-lint": "ray lint --fix",
+    "lint": "ray lint",
+    "publish": "ray publish"
+  }
+}
